@@ -12,6 +12,9 @@ export const routing = defineRouting({
     '/': '/',
     '/about': {
       es: '/nosotros'
+    },
+    '/services': {
+      es: '/servicios'
     }
   }
 });

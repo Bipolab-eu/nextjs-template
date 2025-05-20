@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 body {
-  @apply bg-neutral-50 text-neutral-900 box-border m-0 p-0;
+  @apply bg-neutral-50 text-neutral-900 box-border m-0 p-0 list-none [&::-webkit-details-marker]:hidden;
 }
 
 main {

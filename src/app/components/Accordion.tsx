@@ -5,7 +5,7 @@ interface Props {
   description: string
 }
 
-export const Accordion: React.FC<Props> = async ({ title, description }) => {
+export const Accordion: React.FC<Props> = ({ title, description }) => {
   return (
     <details
       name="active"
