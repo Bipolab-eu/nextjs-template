@@ -1,33 +1,17 @@
 @import "tailwindcss";
 
 body {
-  @apply bg-neutral-50 text-neutral-900 box-border m-0 p-0 list-none [&::-webkit-details-marker]:hidden;
+  @apply bg-neutral-50 text-neutral-900 box-border m-0 p-0 list-none [&::-webkit-details-marker]:hidden antialiased;
 }
 
 main {
-  @apply pt-20 px-4 max-w-7xl mx-auto;
+  @apply pt-24 px-4 max-w-7xl mx-auto;
 }
 
 @theme {
-  --font-recoleta: 'Recoleta';
-  --font-wotfard: 'Wotfard';
-
   /* Corporate Colors */
   --color-primary: #C56D4A;
   --color-secondary: #D8C7B9;
-
-  /* Color Beige */
-  --color-beige-50:  #FBFAF8;
-  --color-beige-100: #F6F2EF;
-  --color-beige-200: #EDE5DE;
-  --color-beige-300: #DBCBBD;
-  --color-beige-400: #C8B09D;
-  --color-beige-500: #B6967C;
-  --color-beige-600: #A47C5B;
-  --color-beige-700: #836349;
-  --color-beige-800: #624A37;
-  --color-beige-900: #423224;
-  --color-beige-950: #211912;
 
   /* Color Neutral */
   --color-neutral-50:  #FAFAFA;
@@ -87,7 +71,7 @@ main {
 
   /* Links & Buttons */
   .btn {
-    @apply h-16 px-6 bg-neutral-950 rounded-lg inline-flex items-center text-center text-neutral-50 text-base/4 font-wotfard md:cursor-pointer;
+    @apply h-16 px-6 bg-neutral-950 rounded-lg inline-flex items-center text-center text-neutral-50 text-base/4 md:cursor-pointer;
   }
   .btn-icon {
     @apply p-6 bg-neutral-950 rounded-lg inline-flex items-center md:cursor-pointer;

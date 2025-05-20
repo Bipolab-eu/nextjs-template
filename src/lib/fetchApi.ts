@@ -37,10 +37,10 @@ export const fetchApi = async <T>({
         skipNulls: true,
       });
 
-    const response = await fetch(`${url}${apiRoute}?${query}`)
-    const { data } = await response.json()
+    const response = await fetch(`${url}${apiRoute}?${query}`);
+    const { data } = await response.json();
 
-    if (!data) { return {} }
+    if (!data) { return {} };
     
     return data;
 
