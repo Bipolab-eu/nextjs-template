@@ -38,9 +38,9 @@ const data = [
   {
     id: 4,
     title: 'Hoteles',
-    url: '/servicios',
+    url: '/about',
     children: [
-      { id: 1, title: 'All', url: '/services' },
+      { id: 1, title: 'All', url: '/about' },
       { id: 2, title: 'Servicio 2', url: '/servicios/servicio-1' },
       { id: 3, title: 'Servicio 3', url: '/servicios/servicio-2' },
       { id: 4, title: 'Servicio 3', url: '/servicios/servicio-3' }
@@ -72,6 +72,11 @@ const data = [
       { id: 8, title: 'Servicio 7', url: '/servicios/servicio-3' },
       { id: 9, title: 'Servicio 8', url: '/servicios/servicio-3' },
       { id: 10, title: 'Servicio 9', url: '/servicios/servicio-3' },
+      { id: 11, title: 'Servicio 9', url: '/servicios/servicio-3' },
+      { id: 12, title: 'Servicio 9', url: '/servicios/servicio-3' },
+      { id: 13, title: 'Servicio 9', url: '/servicios/servicio-3' },
+      { id: 14, title: 'Servicio 9', url: '/servicios/servicio-3' },
+      { id: 15, title: 'Servicio 15', url: '/servicios/servicio-3' },
     ]
   },
 ]
@@ -80,61 +85,79 @@ export const Navbar: React.FC<Props> = ({ locale, route }) => {
   const [openMenu, setOpen] = useState<boolean>(false);
 
   return (
-    <nav>
+    <nav className='fixed z-10 w-full bg-neutral-50 border-b border-neutral-200'>
       {/* Desktop Menu */}
-      <div className="fixed z-10 w-full bg-neutral-100">
-        <div className='flex px-4 py-6 gap-4 justify-between items-center max-w-7xl mx-auto'>
-          <h1>Logotipo</h1>
-          <div className="inline-flex justify-start items-center gap-4 body">
-            {
-              data.map((item: any) => {
-                return (
-                  <div className='hidden md:block' key={item.id}>
-                    {item.children.length === 0 ?
-                      /* Link */
-                      <Link href={item.url}>{item.title}</Link>
-                      :
-                      /* Dropdown */
-                      <div key={item.id} className='relative group'>
-                        <span className='cursor-pointer'>{item.title}</span>
-                        <div className='absolute right-0 pt-4 hidden group-hover:block w-max'>
-                          <ul className="bg-beige-50 shadow-2xl rounded-xl px-4 py-6 space-y-3 text-right">
-                            {item.children.map((child: any) => {
-                              return (
-                                <li key={child.id}>
-                                  <Link href={(child.url)}>{child.title}</Link>
-                                </li>
-                              );
-                            })}
+        <div className='h-20 flex px-4 gap-4 justify-between items-center max-w-7xl mx-auto'>
+        <h1>Logotipo</h1>
+        <div className="inline-flex justify-start items-center gap-4 text-base/4">
+          {
+            data.map((item: any) => {
+              return (
+                <div className='hidden md:block' key={item.id}>
+                  {item.children.length === 0 ?
+                    /* Link */
+                    <Link href={item.url}>{item.title}</Link>
+                    :
+                    /* Dropdown */
+                    (() => {
+                      const detailsRef = React.createRef<HTMLDetailsElement>();
+                      return (
+                        <details
+                          key={item.id}
+                          name='active'
+                          className='group'
+                          ref={detailsRef}
+                        >
+                          <summary className='inline-flex items-center gap-x-2 cursor-pointer'>
+                            <span>{item.title}</span>
+                            <ChevronDown
+                              className="transition-transform duration-300 group-open:rotate-180"
+                              size={14}
+                            />
+                          </summary>
+                          <ul className="absolute mt-10 px-4 py-6 space-y-3 bg-neutral-50 shadow-md rounded-md">
+                            {item.children.map((child: any) => (
+                              <li key={child.id}>
+                                <Link
+                                  href={child.url}
+                                  onClick={() => {
+                                    detailsRef.current?.removeAttribute('open');
+                                  }}
+                                >
+                                  {child.title}
+                                </Link>
+                              </li>
+                            ))}
                           </ul>
-                        </div>
-                      </div>
-                    }
-                  </div>
-                )
-              }
+                        </details>
+                      );
+                    })()
+
+                  }
+                </div>
               )
             }
+            )
+          }
 
-            {/* Menu Button */}
-            <button
-              onClick={() => {
-                setOpen(!openMenu)
-              }}
-              className='md:hidden'
-            >
-              {!openMenu ? <Menu color='#0A0A0A' /> : <X color='#0A0A0A' />}
-            </button>
+          {/* Menu Button */}
+          <button
+            onClick={() => {
+              setOpen(!openMenu)
+            }}
+            className='md:hidden'
+          >
+            {!openMenu ? <Menu color='#0A0A0A' /> : <X color='#0A0A0A' />}
+          </button>
 
-            {/* Permite al usuario cambiar de idioma */}
-            <LocaleSwitcher />
-          </div>
+          {/* Permite al usuario cambiar de idioma */}
+          <LocaleSwitcher />
         </div>
       </div>
 
       {/* Mobile Menu */}
       {openMenu && (
-        <div className='fixed w-full pt-24 bg-neutral-300 heading-5 p-4 space-y-2 max-h-screen overflow-y-auto'>
+        <div className='fixed top-20 inset-0 z-10 bg-neutral-100 heading-5 p-4 space-y-2 max-h-screen overflow-y-auto'>
           {
             data.map((item: any) => {
               return (
@@ -161,7 +184,7 @@ export const Navbar: React.FC<Props> = ({ locale, route }) => {
                       />
                       <span>{item.title}</span>
                     </summary>
-                    <ul className="py-4 space-y-2">
+                    <ul className="px-6.5 py-4 space-y-2 ">
                       {item.children.map((child: any) => (
                         <li key={child.id}>
                           <Link
