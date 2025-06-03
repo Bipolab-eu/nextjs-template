@@ -5,7 +5,6 @@ import { hasLocale, NextIntlClientProvider } from "next-intl";
 import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
 import { Navbar } from "../components/Navbar";
-import { fetchApi } from "@/lib/fetchApi";
 import Footer from "../components/Footer";
 
 export const metadata: Metadata = {
@@ -38,22 +37,12 @@ export default async function RootLayout({
     notFound();
   }
 
-  const [{ items }]:any = await fetchApi({
-    apiRoute: '/api/tree-menus/menu',
-    locale,
-    filters: {
-      documentId: {
-        $eq: 'wan65cr54i0uzw1doz6qv703',
-      },
-    },
-  });
-
 
   return (
     <html lang={locale}>
       <body className={`${dmSerifText.className} ${inter.className}`}>
         <NextIntlClientProvider>
-          <Navbar data={items} />
+          <Navbar />
           {children}
           <Footer />
         </NextIntlClientProvider>

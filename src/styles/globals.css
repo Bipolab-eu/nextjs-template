@@ -8,22 +8,10 @@ main {
   @apply pt-24 px-4 max-w-7xl mx-auto space-y-9;
 }
 
-<<<<<<< HEAD
 @layer components {
   /* Typography */
   .body {
     @apply text-base/5
-=======
-@theme {
-  --font-sans: 'Inter', sans-serif;
-  --font-serif: 'DM Serif Text', serif;
-}
-
-@layer components {
-  /* Typography */
-  .body {
-    @apply font-sans text-base/6
->>>>>>> 4b63220b94bd04214e005f31e3368c87594d6a72
   }
 
   .subtitle {
@@ -36,11 +24,7 @@ main {
 
   /* Links & Buttons */
   .btn {
-<<<<<<< HEAD
     @apply h-16 px-6 bg-neutral-950 rounded-lg inline-flex items-center text-center text-neutral-50 text-base/4 md:cursor-pointer;
-=======
-    @apply h-16 px-6 bg-blue-700 rounded-lg inline-flex items-center text-center text-neutral-50 text-base/4 md:cursor-pointer;
->>>>>>> 4b63220b94bd04214e005f31e3368c87594d6a72
   }
   .btn-icon {
     @apply p-6 bg-neutral-950 rounded-lg inline-flex items-center md:cursor-pointer;
