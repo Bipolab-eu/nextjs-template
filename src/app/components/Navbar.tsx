@@ -16,9 +16,9 @@ export const Navbar: React.FC<Props> = ({ data }) => {
   return (
     <nav>
       {/* Desktop Menu */}
-      <div className="fixed z-10 w-full bg-neutral-100">
+      <div className="fixed z-10 w-full bg-neutral-50">
         <div className='flex px-4 py-6 gap-4 justify-between items-center max-w-7xl mx-auto'>
-          <h1>Event Pro Gran Canaria</h1>
+          <h1 className='font-serif text-lg text-blue-700'>Event Pro Gran Canaria</h1>
           <div className="inline-flex justify-start items-center gap-4 body">
             {
               data.map((item: any) => {
