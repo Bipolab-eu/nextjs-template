@@ -1,6 +1,9 @@
 import { fetchApi } from "@/lib/fetchApi";
 import { Hero } from "../components/Hero";
-import { fetchComponentbyId, fetchComponentbyName } from "@/lib/fetchComponents";
+import { fetchComponentbyName } from "@/lib/fetchComponents";
+import { BlockContent } from "../components/BlocksContent";
+import { HeaderSection } from "../components/HeaderSection";
+import { Slider } from "../components/Slider";
 
 export default async function HomePage({ params }:any) {
   const { locale } = await params;
@@ -13,6 +16,15 @@ export default async function HomePage({ params }:any) {
         on: {
           'layout.hero': {
             populate: 'cover'
+          },
+          'layout.rich-text': {
+            populate: true
+          },
+          'layout.header-sections': {
+            populate: true
+          },
+          'layout.slider': {
+            populate: 'files'
           }
         }
       }
@@ -20,13 +32,15 @@ export default async function HomePage({ params }:any) {
   })
 
   const { blocks }:any = data
-  const heroData = fetchComponentbyName(blocks, 'layout.hero')
-
-  console.log(heroData)
 
   return (
     <main>
-      <Hero data={heroData} />
+      <Hero data={fetchComponentbyName(blocks, 'layout.hero')} />
+      <section className="max-w-xl border-l border-blue-700 pl-4 py-6">
+        <BlockContent content={fetchComponentbyName(blocks, 'layout.rich-text')} />
+      </section>
+      <HeaderSection data={fetchComponentbyName(blocks, 'layout.header-sections')} />
+      <Slider data={fetchComponentbyName(blocks, 'layout.slider')} />
     </main>
   )
 }

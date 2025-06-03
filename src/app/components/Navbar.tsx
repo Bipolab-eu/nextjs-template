@@ -32,7 +32,7 @@ export const Navbar: React.FC<Props> = ({ data }) => {
                       <div key={item.id} className='relative group'>
                         <span className='cursor-pointer'>{item.title}</span>
                         <div className='absolute right-0 pt-4 hidden group-hover:block w-max'>
-                          <ul className="bg-beige-50 shadow-2xl rounded-xl px-4 py-6 space-y-3 text-right">
+                          <ul className="bg-neutral-50 shadow-2xl rounded-xl px-4 py-6 space-y-3 text-right">
                             {item.children.map((child: any) => {
                               return (
                                 <li key={child.id}>
@@ -68,7 +68,7 @@ export const Navbar: React.FC<Props> = ({ data }) => {
 
       {/* Mobile Menu */}
       {openMenu && (
-        <div className='fixed w-full pt-24 bg-neutral-300 heading-5 p-4 space-y-2 max-h-screen overflow-y-auto'>
+        <div className='fixed z-10 w-full mt-18 bg-blue-800 heading-5 p-4 space-y-2 max-h-screen overflow-y-auto'>
           {
             data.map((item: any) => {
               return (

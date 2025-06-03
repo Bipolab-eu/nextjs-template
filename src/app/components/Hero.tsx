@@ -1,5 +1,6 @@
 import Image from "next/image"
 import { Cover } from "./Cover"
+import Link from "next/link"
 
 interface Props {
   data: any
@@ -8,20 +9,20 @@ interface Props {
 export const Hero: React.FC<Props> = ({ data }) => {
 
   return (
-    <section className="relative aspect-[9/16] md:aspect-video w-full overflow-hidden">
+    <header className="sm:grid sm:grid-cols-2 sm:gap-12 items-center">
+      <div className="space-y-4 py-12">
+        <h1 className="title text-blue-700">{data.title}</h1>
+        <h2 className="subtitle text-neutral-700">{data.subtitle}</h2>
+        <Link href={data.linkUrl} className="btn">{data.linkTitle}</Link>
+      </div>
       <Image
         src={`http://localhost:1337${data.cover.url}`}
         alt={data.cover.name}
-        fill
-        className="object-cover"
+        height={500}
+        width={500}
+        className="object-cover w-full aspect-4/5"
         priority
       />
-      <div className="absolute inset-0 flex items-center justify-center text-neutral-50 px-4 text-center">
-        <div>
-          <h1 className="heading-3 mb-4">{data.title}</h1>
-          <p className="body">{data.description}</p>
-        </div>
-      </div>
-    </section>
+    </header>
   )
 }
