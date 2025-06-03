@@ -1,40 +1,46 @@
 @import "tailwindcss";
 
 body {
-  @apply bg-neutral-50 text-neutral-900 box-border m-0 p-0 list-none [&::-webkit-details-marker]:hidden;
+  @apply bg-neutral-50 text-neutral-900 box-border m-0 p-0 list-none [&::-webkit-details-marker]:hidden antialiased;
 }
 
 main {
-  @apply pt-20 px-4 max-w-7xl mx-auto;
+  @apply pt-24 px-4 max-w-7xl mx-auto space-y-9;
+}
+
+<<<<<<< HEAD
+@layer components {
+  /* Typography */
+  .body {
+    @apply text-base/5
+=======
+@theme {
+  --font-sans: 'Inter', sans-serif;
+  --font-serif: 'DM Serif Text', serif;
 }
 
 @layer components {
   /* Typography */
   .body {
-    @apply text-base/5
+    @apply font-sans text-base/6
+>>>>>>> 4b63220b94bd04214e005f31e3368c87594d6a72
   }
-  .heading-6 {
-    @apply text-xl/7 sm:text-2xl/8
+
+  .subtitle {
+    @apply font-sans text-xl/6
   }
-  .heading-5 {
-    @apply text-2xl/8 sm:text-3xl/9
-  }
-  .heading-4 {
-    @apply text-3xl/9 sm:text-4xl/10
-  }
-  .heading-3 {
-    @apply text-4xl/10 sm:text-5xl/11
-  }
-  .heading-2 {
-    @apply text-5xl/11 sm:text-6xl/12
-  }
-  .heading-1 {
-    @apply text-6xl/12 sm:text-7xl/14
+
+  .title {
+    @apply font-serif text-4xl/10
   }
 
   /* Links & Buttons */
   .btn {
+<<<<<<< HEAD
     @apply h-16 px-6 bg-neutral-950 rounded-lg inline-flex items-center text-center text-neutral-50 text-base/4 md:cursor-pointer;
+=======
+    @apply h-16 px-6 bg-blue-700 rounded-lg inline-flex items-center text-center text-neutral-50 text-base/4 md:cursor-pointer;
+>>>>>>> 4b63220b94bd04214e005f31e3368c87594d6a72
   }
   .btn-icon {
     @apply p-6 bg-neutral-950 rounded-lg inline-flex items-center md:cursor-pointer;

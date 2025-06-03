@@ -6,10 +6,10 @@ import LocaleSwitcher from './LocaleSwitcher';
 import Link from 'next/link';
 
 interface Props {
-  locale: any
-  route: any
+  data: any
 }
 
+<<<<<<< HEAD
 /* Data Example */
 const data = [
   {
@@ -80,8 +80,10 @@ const data = [
     ]
   },
 ]
+=======
+>>>>>>> 4b63220b94bd04214e005f31e3368c87594d6a72
 
-export const Navbar: React.FC<Props> = ({ locale, route }) => {
+export const Navbar: React.FC<Props> = ({ data }) => {
   const [openMenu, setOpen] = useState<boolean>(false);
 
   return (
