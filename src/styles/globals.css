@@ -14,14 +14,6 @@ main {
     @apply text-base/5
   }
 
-  .subtitle {
-    @apply font-sans text-xl/6
-  }
-
-  .title {
-    @apply font-serif text-4xl/10
-  }
-
   /* Links & Buttons */
   .btn {
     @apply h-16 px-6 bg-neutral-950 rounded-lg inline-flex items-center text-center text-neutral-50 text-base/4 md:cursor-pointer;
