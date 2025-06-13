@@ -1,9 +1,5 @@
 import { ChevronDown } from "lucide-react"
-
-interface Props {
-  title: string
-  description: string
-}
+import { Props } from "./types"
 
 export const Accordion: React.FC<Props> = ({ title, description }) => {
   return (

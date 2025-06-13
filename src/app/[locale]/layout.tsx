@@ -30,7 +30,7 @@ export default async function RootLayout({
       <body>
         <NextIntlClientProvider>
           <Navbar />
-          <main className="container mx-auto pt-24 px-4">
+          <main>
             {children}
           </main>
           <Footer />

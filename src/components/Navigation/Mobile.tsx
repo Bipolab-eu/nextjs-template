@@ -14,8 +14,8 @@ export const Mobile: React.FC<Props> = ({ data }) => {
   const [openMenu, setOpen] = useState<boolean>(false);
 
   return (
-    <div className='md:hidden'>
-      <div className='h-20 flex px-4 gap-4 justify-between items-center max-w-7xl mx-auto'>
+    <div className='md:hidden container mx-auto'>
+      <div className='h-20 flex items-center justify-between px-4'>
         <LocaleSwitcher />
         <h1>Logotipo</h1>
         <button
