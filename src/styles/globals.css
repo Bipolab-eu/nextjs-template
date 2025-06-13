@@ -1,27 +1,9 @@
-@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');@import "tailwindcss";
+
+@theme {
+  --font-inter: "Inter", sans-serif;
+}
 
 body {
-  @apply bg-neutral-50 text-neutral-900 box-border m-0 p-0 list-none [&::-webkit-details-marker]:hidden antialiased;
-}
-
-main {
-  @apply pt-24 px-4 max-w-7xl mx-auto space-y-9;
-}
-
-@layer components {
-  /* Typography */
-  .body {
-    @apply text-base/5
-  }
-
-  /* Links & Buttons */
-  .btn {
-    @apply h-16 px-6 bg-neutral-950 rounded-lg inline-flex items-center text-center text-neutral-50 text-base/4 md:cursor-pointer;
-  }
-  .btn-icon {
-    @apply p-6 bg-neutral-950 rounded-lg inline-flex items-center md:cursor-pointer;
-  }
-  .btn-icon-secondary {
-    @apply p-6 bg-neutral-50 rounded-lg inline-flex items-center md:cursor-pointer;
-  }
+  @apply font-inter text-gray-950 bg-neutral-50 antialiased;
 }

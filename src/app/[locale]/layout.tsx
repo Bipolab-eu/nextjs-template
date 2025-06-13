@@ -1,27 +1,15 @@
 import type { Metadata } from "next";
 import "../../styles/globals.css";
-import { DM_Serif_Text, Inter } from 'next/font/google'
 import { hasLocale, NextIntlClientProvider } from "next-intl";
 import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
-import { Navbar } from "../components/Navbar";
-import Footer from "../components/Footer";
+import Footer from "@/components/Footer";
+import { Navbar } from "@/components/Navigation/Navbar";
 
 export const metadata: Metadata = {
-  title: "Event Pro Gran Canaria",
-  description: "Event Pro Gran Canaria is a leading event management company specializing in organizing and executing high-quality events in Gran Canaria. Our team of experts is dedicated to delivering exceptional experiences for our clients and their guests, ensuring every detail is meticulously planned and executed.",
+  title: "Nextjs Template",
+  description: "Template",
 };
-
-const dmSerifText = DM_Serif_Text({
-  weight: '400',
-  subsets: ['latin'],
-})
-
-const inter = Inter({
-  weight: '400',
-  subsets: ['latin'],
-})
-
 
 export default async function RootLayout({
   children,
@@ -37,13 +25,14 @@ export default async function RootLayout({
     notFound();
   }
 
-
   return (
     <html lang={locale}>
-      <body className={`${dmSerifText.className} ${inter.className}`}>
+      <body>
         <NextIntlClientProvider>
           <Navbar />
-          {children}
+          <main className="container mx-auto pt-24 px-4">
+            {children}
+          </main>
           <Footer />
         </NextIntlClientProvider>
       </body>

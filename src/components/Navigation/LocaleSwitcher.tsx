@@ -31,7 +31,7 @@ export default function LocaleSwitcher() {
     <label
       className={`${isPending ? 'opacity-50 pointer-events-none transition-opacity' : ''} inline-flex items-center gap-x-1.5`}
     >
-      <Globe size={16} className='hidden sm:block' />
+      <Globe size={16} />
       <span className="sr-only">{t('label')}</span>
       <select
         className="text-sm focus:outline-none cursor-pointer"
