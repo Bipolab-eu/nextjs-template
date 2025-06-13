@@ -6,15 +6,13 @@ export const routing = defineRouting({
   locales: ['es', 'en'],
  
   // Used when no locale matches
-  defaultLocale: 'en',
+  defaultLocale: 'es',
 
   pathnames: {
     '/': '/',
-    '/about': {
-      es: '/nosotros'
+    '/page-name': {
+      es: '/pathname',
     },
-    '/services': {
-      es: '/servicios'
-    }
+
   }
 });
