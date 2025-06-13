@@ -53,7 +53,7 @@ export const Desktop: React.FC<Props> = ({ data }) => {
           <div key={item.id} className="relative">
             {item.children.length === 0 ? (
               /* Link Simple */
-              <Link 
+              <Link
                 href={item.url}
                 className="hover:text-Colors-blue-700 transition-colors py-2"
               >
@@ -74,7 +74,7 @@ export const Desktop: React.FC<Props> = ({ data }) => {
                   }
                 }}
               >
-                <summary 
+                <summary
                   className='inline-flex items-center gap-x-2 cursor-pointer hover:text-Colors-blue-700 transition-colors list-none'
                   role="button"
                   aria-haspopup="true"
@@ -86,7 +86,7 @@ export const Desktop: React.FC<Props> = ({ data }) => {
                     aria-hidden="true"
                   />
                 </summary>
-                <ul 
+                <ul
                   className="absolute left-0 mt-2 min-w-[200px] py-2 bg-white rounded-md shadow-lg border border-neutral-100"
                   role="menu"
                 >
@@ -94,10 +94,13 @@ export const Desktop: React.FC<Props> = ({ data }) => {
                     <li key={child.id} role="none">
                       <Link
                         href={child.url}
-                        className="block px-4 py-2 text-sm text-neutral-700 hover:bg-neutral-50 hover:text-Colors-blue-700 transition-colors"
-                        onClick={() => {
+                        className="block px-4 py-2 text-sm text-neutral-700 hover:bg-neutral-50 hover:text-blue-700 transition-colors"
+                        onClick={(e) => {
+                          e.preventDefault() // Prevenir comportamiento por defecto
+                          e.stopPropagation() // Detener la propagación
                           const details = detailsRefs.current.get(item.id)
                           if (details) details.removeAttribute('open')
+                          window.location.href = child.url // Navegar manualmente
                         }}
                         role="menuitem"
                       >
