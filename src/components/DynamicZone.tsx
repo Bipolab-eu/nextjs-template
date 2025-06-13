@@ -4,22 +4,23 @@ import { Hero } from "@/components/Hero/Default";
 import { TestimonialLayout } from "./Testimonial/TestimonialLayout";
 import { Testimonial } from "./Testimonial/Default";
 
-export const components: Record<string, React.ComponentType<any>> = {
+export const listComponents: Record<string, React.ComponentType<any>> = {
   'blocks.accordion': Accordion,
   'blocks.header': Header,
   'blocks.hero': Hero,
+  "blocks.testimonial": TestimonialLayout,
 };
 
-function groupTestimonials(blocks: any[]) {
+function groupBlocksByType(blocks: any[], groupTypes: string[]) {
   const result = [];
   let currentGroup = [];
 
   for (const block of blocks) {
-    if (block.__component === 'blocks.testimonial') {
+    if (groupTypes.includes(block.__component)) {
       currentGroup.push(block);
     } else {
       if (currentGroup.length > 0) {
-        result.push([...currentGroup]);
+        result.push({ __component: currentGroup[0].__component, items: [...currentGroup] });
         currentGroup = [];
       }
       result.push(block);
@@ -27,38 +28,41 @@ function groupTestimonials(blocks: any[]) {
   }
 
   if (currentGroup.length > 0) {
-    result.push([...currentGroup]);
+    result.push({ __component: currentGroup[0].__component, items: [...currentGroup] });
   }
 
   return result;
 }
 
 export default function Blocks({ blocks }: any) {
-  const groupedBlocks = groupTestimonials(blocks);
+  // Agrupa por tipos deseados
+  const groupedBlocks = groupBlocksByType(blocks, ["blocks.testimonial"]);
 
   return (
     <>
-      {groupedBlocks.map((group: any, i: number) => {
-        // Agrupación de blocks.testimonial
-        if (Array.isArray(group) && group[0]?.__component === 'blocks.testimonial') {
-          return (
-            <TestimonialLayout key={`testimonial-group-${i}`}>
-              {group.map((testimonial: any) => (
-                <Testimonial key={testimonial.id} {...testimonial} />
-              ))}
-            </TestimonialLayout>
-          );
-        }
+      {groupedBlocks.map((block: any, i: number) => {
+        const Component = listComponents[block.__component];
 
-        // Resto de bloques
-        const Component = components[group.__component];
         if (!Component) {
-          console.warn(`No component found for: ${group.__component}`);
+          console.warn(`No component found for: ${block.__component}`);
           return null;
         }
 
-        return <Component key={group.id} {...group} />;
+        if (block.items) {
+          // Es un grupo (como testimonial.group)
+          return (
+            <Component key={`group-${i}`}>
+              {block.items.map((item: any) => (
+                <Testimonial key={item.id} {...item} />
+              ))}
+            </Component>
+          );
+        }
+
+        // Renderiza normalmente
+        return <Component key={block.id} {...block} />;
       })}
     </>
   );
 }
+
