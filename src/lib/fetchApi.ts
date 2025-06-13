@@ -4,6 +4,7 @@ https://docs.strapi.io/cms/api/rest/interactive-query-builder
 */
 
 import qs from 'qs';
+import { populateDinamicZoneQuery } from './dinamicZoneQuery';
 const url = process.env.API_URL || 'http://localhost:1337';
 
 interface QueryProps {
@@ -11,7 +12,6 @@ interface QueryProps {
   locale: any,
   sort?: string[],
   filters?: Record<string, any>;
-  populate?: Record<string, any>;
   fields?: string[],
 }
 
@@ -20,7 +20,6 @@ export const fetchApi = async <T>({
   locale,
   sort,
   filters,
-  populate,
   fields,
 }: QueryProps): Promise<T | {}> => {
 
@@ -30,7 +29,7 @@ export const fetchApi = async <T>({
       locale,
       sort,
       filters,
-      populate,
+      populate: populateDinamicZoneQuery,
       fields,
     }, {
         encodeValuesOnly: true,

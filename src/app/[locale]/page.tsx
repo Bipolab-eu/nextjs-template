@@ -1,13 +1,21 @@
-import { Accordion } from "@/components/Accordion/Default";
-import Hero from "@/components/Hero/Variant1";
-import { Testimonial } from "@/components/Testimonial/Default";
 
-export default async function HomePage({ params }:any) {
+import Blocks from "@/components/DynamicZone";
+import { fetchApi } from "@/lib/fetchApi"
+
+
+export default async function HomePage({ params }: any) {
+  const { locale } = await params;
+
+  const data = await fetchApi({
+    apiRoute: '/api/pages/z1lfo4tweyzzttqbgftxilqr',
+    locale
+  }) as any
+
+  console.log(data)
 
   return (
     <main className="layout">
-      <Hero />
-      <Testimonial />
+      <Blocks blocks={data.blocks} />
     </main>
   )
 }

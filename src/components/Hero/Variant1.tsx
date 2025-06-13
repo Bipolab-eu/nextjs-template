@@ -2,13 +2,13 @@ import React from 'react'
 import { Props } from './types'
 import Link from 'next/link'
 
-export default function Hero({
+export const Hero: React.FC<Props> = ({
   title = "Default Title",
   subtitle = "Default Subtitle",
   cover = "https://placehold.co/624x780",
   linkLabel = "Learn More",
   linkHref = "#"
-}: Props) {
+}: Props) => {
   
   return (
     <div className="relative">
