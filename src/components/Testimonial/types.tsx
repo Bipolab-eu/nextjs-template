@@ -1,4 +1,11 @@
+export interface Testimonial {
+  id: number;
+  author: string;
+  quote: string;
+}
+
 export interface Props {
-  author?: string;
-  quote?: string;
+  title: string;
+  subtitle: string;
+  testimonials: Testimonial[];
 }

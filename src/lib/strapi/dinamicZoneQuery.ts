@@ -12,7 +12,9 @@ export const populateDinamicZoneQuery = {
         populate: 'cover'
       },
       'blocks.rich-text': true,
-      'blocks.testimonial': true,
+      'blocks.testimonial': {
+        populate: 'testimonials'
+      },
       'blocks.video': true,
     }
   }
