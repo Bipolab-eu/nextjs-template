@@ -10,7 +10,6 @@ export default async function HomePage({ params }: any) {
   const data = await fetchApi({
     apiRoute: '/api/pages/z1lfo4tweyzzttqbgftxilqr',
     locale,
-    populate: populateDinamicZoneQuery
   }) as any
 
   return (
