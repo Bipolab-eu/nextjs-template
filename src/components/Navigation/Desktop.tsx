@@ -8,8 +8,8 @@ import Link from 'next/link'
 interface MenuItem {
   id: string | number
   title: string
-  url: string
-  children: MenuItem[]
+  path: string
+  items: MenuItem[]
 }
 
 interface Props {
@@ -51,10 +51,10 @@ export const Desktop: React.FC<Props> = ({ data }) => {
       <div className='flex items-center gap-x-6 text-base/4'>
         {data.map((item) => (
           <div key={item.id} className="relative">
-            {item.children.length === 0 ? (
+            {item.items.length === 0 ? (
               /* Link Simple */
               <Link
-                href={item.url}
+                href={item.path}
                 className="hover:text-Colors-blue-700 transition-colors py-2"
               >
                 {item.title}
@@ -90,17 +90,17 @@ export const Desktop: React.FC<Props> = ({ data }) => {
                   className="absolute left-0 mt-2 min-w-[200px] py-2 bg-white rounded-md shadow-lg border border-neutral-100"
                   role="menu"
                 >
-                  {item.children.map((child) => (
+                  {item.items.map((child) => (
                     <li key={child.id} role="none">
                       <Link
-                        href={child.url}
+                        href={child.path}
                         className="block px-4 py-2 text-sm text-neutral-700 hover:bg-neutral-50 hover:text-blue-700 transition-colors"
                         onClick={(e) => {
                           e.preventDefault() // Prevenir comportamiento por defecto
                           e.stopPropagation() // Detener la propagación
                           const details = detailsRefs.current.get(item.id)
                           if (details) details.removeAttribute('open')
-                          window.location.href = child.url // Navegar manualmente
+                          window.location.href = child.path // Navegar manualmente
                         }}
                         role="menuitem"
                       >

@@ -5,6 +5,8 @@ import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
 import Footer from "@/components/Footer/Footer";
 import { Navbar } from "@/components/Navigation/Navbar";
+import { fetchApi } from "@/lib/strapi/fetchApi";
+import { fetchNavigation } from "@/lib/strapi/fetchNavigation";
 
 export const metadata: Metadata = {
   title: "Nextjs Template",
@@ -25,11 +27,16 @@ export default async function RootLayout({
     notFound();
   }
 
+  const navigation = await fetchNavigation({
+    navigationId: '/api/navigation/render/xghe9w6sispans2ncy15i2np',
+    type: 'TREE'
+  }) as any
+
   return (
     <html lang={locale}>
       <body>
         <NextIntlClientProvider>
-          <Navbar />
+          <Navbar data={navigation} />
           <main>
             {children}
           </main>

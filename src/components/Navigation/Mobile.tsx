@@ -8,8 +8,8 @@ import Link from 'next/link'
 interface MenuItem {
   id: string | number
   title: string
-  url: string
-  children: MenuItem[]
+  path: string
+  items: MenuItem[]
 }
 
 interface Props {
@@ -63,10 +63,10 @@ export const Mobile: React.FC<Props> = ({ data }) => {
         <nav className='container mx-auto p-4 space-y-4 max-h-[calc(100vh-80px)] overflow-y-auto'>
           {data.map((item) => (
             <div key={item.id}>
-              {item.children.length === 0 ? (
+              {item.items.length === 0 ? (
                 /* Link Simple */
                 <Link
-                  href={item.url}
+                  href={item.path}
                   className='block py-2 text-lg text-neutral-900 hover:text-Colors-blue-700 transition-colors'
                   onClick={() => setOpen(false)}
                 >
@@ -87,10 +87,10 @@ export const Mobile: React.FC<Props> = ({ data }) => {
                     <span>{item.title}</span>
                   </summary>
                   <ul className="pl-8 py-2 space-y-2">
-                    {item.children.map((child) => (
+                    {item.items.map((child) => (
                       <li key={child.id}>
                         <Link
-                          href={child.url}
+                          href={child.path}
                           className='block py-2 text-neutral-700 hover:text-Colors-blue-700 transition-colors'
                           onClick={() => setOpen(false)}
                         >
